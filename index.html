@@ -189,6 +189,49 @@
             font-size: 0.9rem;
         }
 
+
+
+        /* পপ-আপ ব্যাকগ্রাউন্ড */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px); /* ঝাপসা ব্যাকগ্রাউন্ড */
+}
+
+/* পপ-আপ কন্টেন্ট বক্স */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.profile-img { width: 120px; height: 120px; border-radius: 60px; border: 4px solid #2e7d32; }
+.close-btn { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #888; }
+.divider { height: 2px; background: #eee; margin: 15px auto; width: 60%; }
+.bio { font-size: 15px; color: #444; line-height: 1.6; }
+.social-links { margin-top: 20px; display: flex; justify-content: center; gap: 10px; }
+.fb-btn { background: #1877F2; color: #fff; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; }
+.yt-btn { background: #FF0000; color: #fff; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; }
+.info-trigger-btn { background: #FFD700; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 10px; }
+
+
+        
+
     </style>
 </head>
 <body>
@@ -203,29 +246,24 @@
 
 
 
-        <section id="about-section" style="display: none; padding: 20px; background: #f9f9f9; border-radius: 15px; margin: 20px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <img src="your-image.jpg" alt="আমার ছবি" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #2e7d32; object-fit: cover;">
-    <h2 style="color: #2e7d32; margin-top: 15px;">আপনার নাম</h2>
-    <p style="font-style: italic; color: #666;">অ্যাপ ডেভেলপার ও সংগ্রাহক</p>
-    <hr style="width: 50%; border: 0.5px solid #ddd; margin: 15px auto;">
-    <p style="line-height: 1.6; color: #444; max-width: 600px; margin: 0 auto;">
-        বাঙালির হাজার বছরের ঐতিহ্য "খনার বচন" এবং গ্রামীণ প্রবাদগুলোকে ডিজিটাল প্ল্যাটফর্মে সংরক্ষণ করার চেষ্টা করছি। বর্তমান প্রজন্মের কাছে আমাদের শেকড়ের এই জ্ঞান পৌঁছে দেওয়াই আমার লক্ষ্য।
-    </p>
-
-    <div style="margin-top: 25px;">
-        <a href="https://facebook.com/your-id" target="_blank" style="text-decoration: none; background: #1877F2; color: white; padding: 10px 25px; border-radius: 25px; margin-right: 10px; font-weight: bold; display: inline-block;">ফেসবুক</a>
-        <a href="https://youtube.com/your-channel" target="_blank" style="text-decoration: none; background: #FF0000; color: white; padding: 10px 25px; border-radius: 25px; font-weight: bold; display: inline-block;">ইউটিউব</a>
+       <div id="aboutModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img src="your-image.jpg" alt="Profile Image" class="profile-img">
+        <h2>আপনার নাম</h2>
+        <p class="tagline">ডেভেলপার ও সংগ্রাহক</p>
+        <div class="divider"></div>
+        <p class="bio">
+            বাঙালির হাজার বছরের ঐতিহ্য "খনার বচন" এবং গ্রামীণ প্রবাদগুলোকে ডিজিটাল প্ল্যাটফর্মে সংরক্ষণ করার চেষ্টা করছি। বর্তমান প্রজন্মের কাছে আমাদের শেকড়ের এই জ্ঞান পৌঁছে দেওয়াই আমার লক্ষ্য।
+        </p>
+        <div class="social-links">
+            <a href="https://facebook.com/your-id" target="_blank" class="fb-btn">ফেসবুক</a>
+            <a href="https://youtube.com/your-channel" target="_blank" class="yt-btn">ইউটিউব</a>
+        </div>
     </div>
-
-    <button onclick="toggleSection()" style="margin-top: 30px; background: none; border: 1px solid #2e7d32; color: #2e7d32; padding: 5px 15px; cursor: pointer; border-radius: 5px;">← মূল পাতায় ফিরে যান</button>
-</section>
-
-<div id="nav-bar" style="background: #2e7d32; padding: 15px; text-align: right;">
-    <button onclick="toggleSection()" style="background: #FFD700; border: none; padding: 8px 15px; font-weight: bold; border-radius: 5px; cursor: pointer;">আমার পরিচয়</button>
 </div>
 
-<div id="main-content">
-    </div>
+<button onclick="openModal()" class="info-trigger-btn">আমার পরিচয়</button>
 
 
 
@@ -3912,6 +3950,22 @@ const bachanData = [
 }
 
 
+
+        function openModal() {
+    document.getElementById("aboutModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("aboutModal").style.display = "none";
+}
+
+// পপ-আপের বাইরে ক্লিক করলে বন্ধ হয়ে যাবে
+window.onclick = function(event) {
+    let modal = document.getElementById("aboutModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 
         
